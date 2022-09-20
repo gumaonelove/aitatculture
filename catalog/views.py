@@ -16,7 +16,7 @@ class CategoryView(CartMixin, View):
             'product__1_1': Product.objects.get(id=7),
             'product__1_2': Product.objects.get(id=3),
             'product__1_3': Product.objects.get(id=4),
-            'products': Product.objects.all(),
+            'products': Product.objects.all().order_by('id'),
             'cart': self.cart
         }
         return render(request, 'index.html', context)
@@ -25,7 +25,7 @@ class CategoryView(CartMixin, View):
 class ProductsSelectionView(CartMixin, View):
     '''Экран выбора кирпича'''
     def get(self, request, *args, **kwargs):
-        products = Product.objects.filter(category__id=kwargs.get('category_id'))
+        products = Product.objects.filter(category__id=kwargs.get('category_id')).order_by('id')
         context = {
             'products': products ,
             'category': Category.objects.get(id=kwargs.get('category_id')),
@@ -85,7 +85,6 @@ class OrderView(CartMixin, View):
             name=data['name'],
             cart=self.cart
         )
-
         self.cart.in_order = True
         self.cart.save()
 

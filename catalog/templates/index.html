@@ -30,10 +30,10 @@
     <!-- Navigation -->
     <div class="menu_nav">
         <ul>
-            <li><a href="#">Женская одежда</a></li>
-            <li><a href="#">Мужская одежда</a></li>
-            <li><a href="#">Детская одежда</a></li>
-            <li><a href="#">О нас</a></li>
+            {% for category in categories %}
+                    <li><a href="{% url 'products_selection' category_id=category.id %}">{{ category.title }}</a></li>
+                {% endfor %}
+            <li><a href="https://saf.tatar/">saf.tatar</a></li>
         </ul>
     </div>
 </div>
@@ -55,7 +55,7 @@
                 {% for category in categories %}
                     <li><a href="{% url 'products_selection' category_id=category.id %}">{{ category.title }}</a></li>
                 {% endfor %}
-                <li><a href="#">О нас</a></li>
+                <li><a href="https://saf.tatar/">saf.tatar</a></li>
             </ul>
         </nav>
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
@@ -306,9 +306,7 @@
                         </div>
                         <nav class="footer_nav ml-md-auto order-md-2 order-1">
                             <ul class="d-flex flex-row align-items-center justify-content-start">
-                                <li><a href="#">О нас</a></li>
-                                <li><a href="#">ТатЛерн</a></li>
-                                <li><a href="#">saf.tatar</a></li>
+                                <li><a href="https://saf.tatar/">saf.tatar</a></li>
                             </ul>
                         </nav>
                     </div>
