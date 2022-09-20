@@ -1,0 +1,112 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/product.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Карточка товара</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li><a href="{% url 'main_catalog' %}">Главная</a></li>
+                            <li><a href="{% url 'products_selection' category_id=product.category.id %}">{{ product.category.title }}</a></li>
+                            <li>{{ product.title }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product -->
+
+        <div class="product">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Product Image -->
+                    <div class="col-lg-6">
+                        <div class="product_image_slider_container">
+                            <div id="slider" class="flexslider">
+                                <ul class="slides">
+                                    {% for photo in product.images.all %}
+                                    <li style="padding-bottom: 5%;">
+                                        <img src="{{ photo.img.url }}"/>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="col-lg-6 product_col">
+                        <div class="product_info">
+                            <div class="product_name">{{ product.title }}</div>
+                            <div class="product_category"><a href="{% url 'products_selection' category_id=product.category.id %}">{{ product.category.title }}</a></div>
+                            <div class="product_rating_container d-flex flex-row align-items-center justify-content-start">
+                                <div class="rating_r rating_r_5 product_rating"><i></i><i></i><i></i><i></i><i></i>
+                                </div>
+                                <div class="product_reviews">5 out of (3514)</div>
+                            </div>
+                            <div class="product_price">₽{{ product.price }}</div>
+
+                            <div class="product_text">
+                                {% if product.comment %} <p>{{ product.comment }}</p> {% endif %}
+                            </div>
+                            <div class="product_buttons">
+                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+
+                                    <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div>
+                                            <div><img src="{% static 'images/cart.svg' %}" class="svg" alt="">
+                                                <div>+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boxes -->
+
+        <div class="boxes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="box d-flex flex-row align-items-center justify-content-start">
+                            <div class="mt-auto">
+                                <div class="box_image"><img src="{% static 'images/boxes_1.png' %}" alt=""></div>
+                            </div>
+                            <div class="box_content">
+                                <div class="box_title">Подбор размера</div>
+                                <div class="box_text">Сервис по определению размера</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 box_col">
+                        <div class="box d-flex flex-row align-items-center justify-content-start">
+                            <div class="mt-auto">
+                                <div class="box_image"><img src="{% static 'images/boxes_2.png' %}" alt=""></div>
+                            </div>
+                            <div class="box_content">
+                                <div class="box_title">Помощь</div>
+                                <div class="box_text">Наш стилист подберет вам идеальный образ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

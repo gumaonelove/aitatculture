@@ -1,0 +1,6 @@
+Django
+django-crispy==1.8.1
+django-crispy-forms
+django-environ
+gunicorn
+Pillow

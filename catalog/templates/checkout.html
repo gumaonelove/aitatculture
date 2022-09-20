@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/checkout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/checkout_responsive.css' %}">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Оформление заказа</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li><a href="{% url 'main_catalog' %}">Главная</a></li>
+                            <li>Оформление заказа</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout -->
+
+        <div class="checkout">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Billing -->
+                    <div class="col-lg-6">
+                        <div class="billing">
+                            <div class="checkout_title">Заполните форма</div>
+                            <div class="checkout_form_container">
+                                <form action="#" id="checkout_form" class="checkout_form">
+                                    <div>
+                                            <!-- Name -->
+                                            <input type="text" id="checkout_name" class="checkout_input"
+                                                   placeholder="Имя" required="required">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Total -->
+                    <div class="col-lg-6 cart_col">
+                        <div class="cart_total">
+                            <div class="cart_extra_content cart_extra_total">
+                                <div class="checkout_title">Ваш заказ</div>
+                                <ul class="cart_extra_total_list">
+                                    <li class="d-flex flex-row align-items-center justify-content-start">
+                                        <div class="cart_extra_total_title">Сумма</div>
+                                        <div class="cart_extra_total_value ml-auto">₽{{ cart.final_price }}</div>
+                                    </li>
+                                </ul>
+
+                                <div class="cart_text">
+                                    <p>Спасибо за заказ, будем рады видеть вас снова</p>
+                                </div>
+                                <div class="checkout_button trans_200"><a href='javascript:void(0)' onclick="makeOrder()">Оформить заказ</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/request.js' %}"></script>
+        <script>
+            function makeOrder() {
+                let url = '{% url "order_view" %}';
+                let csrftoken = '{{ csrf_token }}';
+                let data = {
+                    'name': document.getElementById('checkout_name').value,
+                };
+                 request(url, data, csrftoken);
+                 setTimeout(() => window.open("{% url 'main_catalog' %}", '_self', false), 100);
+            }
+        </script>
+    </div>
+{% endblock %}

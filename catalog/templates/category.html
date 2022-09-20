@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/category.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/category_responsive.css' %}">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Каталог</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li><a href="#">Главная</a></li>
+                            <li><a href="{% url 'products_selection' category_id=category.id %}">{{ category.title }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+
+        <div class="products">
+            <div class="container">
+
+                <div class="row products_row products_container grid">
+                {% for product in products %}
+                    <div class="col-xl-4 col-md-6">
+                            <div class="product">
+                                <div class="product_image"><img alt="" src="{{ product.get_photo_url }}"></div>
+                                <div class="product_content">
+                                    <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                        <div>
+                                            <div>
+                                                <div class="product_name"><a href="{% url 'products_detail' product_id=product.id %}">{{ product.title }}</a></div>
+                                                <div class="product_category"><a href="{% url 'products_selection' category_id=product.category.id %}">{{ product.category.title }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ml-auto text-right">
+                                            <div class="rating_r rating_r_4 home_item_rating">
+                                                <i></i><i></i><i></i><i></i><i></i></div>
+                                            <div class="product_price text-right">₽{{ product.price }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="product_buttons">
+                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                            <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                <div>
+                                                    <div>
+                                                         <a href="{% url 'add_to_cart' product_id=product.id %}">
+                                                             <img alt="" class="svg" src="{% static 'images/cart.svg' %}">
+                                                         </a>
+                                                        <div>+</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+{% endblock %}

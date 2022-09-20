@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Кием</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="Little Closet template" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link type="image/x-icon" href="{% static 'images/favicon.ico' %}" rel="shortcut icon">
+    <link href="{% static 'styles/bootstrap-4.1.2/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/main_styles.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/responsive.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- Menu -->
+<div class="menu">
+    <!-- Search -->
+    <div class="menu_search">
+        <form action="#" class="menu_search_form" id="menu_search_form">
+            <input class="search_input" placeholder="Search Item" required="required" type="text">
+            <button class="menu_search_button"><img alt="" src="{% static 'images/search.png' %}"></button>
+        </form>
+    </div>
+    <!-- Navigation -->
+    <div class="menu_nav">
+        <ul>
+            <li><a href="#">Женская одежда</a></li>
+            <li><a href="#">Мужская одежда</a></li>
+            <li><a href="#">Детская одежда</a></li>
+            <li><a href="#">О нас</a></li>
+        </ul>
+    </div>
+</div>
+<!-- Header -->
+<header class="header">
+    <div class="header_overlay"></div>
+    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+        <div class="logo">
+            <a href="{% url 'main_catalog' %}">
+                <div class="d-flex flex-row align-items-center justify-content-start">
+                    <div><img alt="" src="{% static 'images/logo.png' %}" width="50"></div>
+                    <div>Кием</div>
+                </div>
+            </a>
+        </div>
+        <div class="hamburger"><i aria-hidden="true" class="fa fa-bars"></i></div>
+        <nav class="main_nav">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                {% for category in categories %}
+                    <li><a href="{% url 'products_selection' category_id=category.id %}">{{ category.title }}</a></li>
+                {% endfor %}
+                <li><a href="#">О нас</a></li>
+            </ul>
+        </nav>
+        <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
+            <!-- Cart -->
+            <div class="user"><a href="{% url 'cart_view' %}">
+                <div><img class="svg" src="{% static 'images/cart.svg' %}">
+                    <div>{{ cart.products.all.count }}</div>
+                </div>
+            </a></div>
+
+        </div>
+    </div>
+</header>
+    <div class="super_container">
+{% block content %}
+
+
+
+        <div class="super_container_inner">
+            <div class="super_overlay"></div>
+            <!-- Home -->
+            <div class="home">
+                <!-- Home Slider -->
+                <div class="home_slider_container">
+                    <div class="owl-carousel owl-theme home_slider">
+                        <!-- Slide -->
+                        <div class="owl-item">
+                            <div class="background_image"
+                                 style="background-image:url({% static 'images/home.jpg' %})"></div>
+                            <div class="container fill_height">
+                                <div class="row fill_height">
+                                    <div class="col fill_height">
+                                        <div class="home_container d-flex flex-column align-items-center justify-content-start">
+                                            <div class="home_content">
+                                                <div class="home_title">Новая коллекция</div>
+                                                <div class="home_subtitle">Сгенерировано нейросетью</div>
+                                                <div class="home_items">
+                                                    <div class="row">
+                                                        <div class="col-sm-3 offset-lg-1">
+                                                            <div class="home_item_side"><a
+                                                                    href="{% url 'products_detail' product_id=product__1_1 %}"><img
+                                                                    alt="{{ product__1_1.title }}"
+                                                                    src="{{ product__1_1.get_photo_url }}"></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-6 col-sm-8 offset-sm-2 offset-md-0">
+                                                            <a href="{% url 'products_detail' product_id=product__1_2.id %}">
+                                                                <div class="product home_item_large">
+                                                                    <div class="product_tag d-flex flex-column align-items-center justify-content-center">
+                                                                        <div>
+                                                                            <div>от</div>
+                                                                            <div>₽{{ product__1_2.price }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="product_image"><img
+                                                                            src="{{ product__1_2.get_photo_url }}">
+                                                                    </div>
+                                                                    <div class="product_content">
+                                                                        <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                                                            <div>
+                                                                                <div>
+                                                                                    <div class="product_name"><a
+                                                                                            href="{% url 'products_detail' product_id=product__1_2.id %}">{{ product__1_2.title }}</a>
+                                                                                    </div>
+                                                                                    <div class="product_category"><a
+                                                                                            href="{% url 'products_selection' category_id=product__1_2.category.id %}">{{ product__1_2.category.title }}</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="ml-auto text-right">
+                                                                                <div class="rating_r rating_r_5 home_item_rating">
+                                                                                    <i></i><i></i><i></i><i></i><i></i>
+                                                                                </div>
+                                                                                <div class="product_price text-right">
+                                                                                    ₽{{ product__1_2.price }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_buttons">
+                                                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+
+                                                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                                                    <div>
+                                                                                        <div>
+                                                                                            <a href="{% url 'add_to_cart' product_id=product__1_2.id %}">
+                                                                                                <img src="{% static 'images/cart_2.svg' %}"
+                                                                                                     alt=""></a>
+                                                                                            <div>+</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="home_item_side"><a
+                                                                    href="{% url 'products_detail' product_id=product__1_3 %}"><img
+                                                                    alt="{{ product__1_3.title }}"
+                                                                    src="{{ product__1_3.get_photo_url }}"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products -->
+
+            <div class="products">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="section_title text-center">Созданное нейросетью</div>
+                        </div>
+                    </div>
+                    <div class="row page_nav_row">
+                        <div class="col">
+                            <div class="page_nav">
+                                <ul class="d-flex flex-row align-items-start justify-content-center">
+                                    {% for category in categories %}
+                                        <li>
+                                            <a href="{% url 'products_selection' category_id=category.id %}">{{ category.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row products_row">
+                        {% for product in products %}
+                            <!-- Product -->
+                            <div class="col-xl-4 col-md-6">
+                                <div class="product">
+                                    <div class="product_image"><img alt="" src="{{ product.get_photo_url }}"></div>
+                                    <div class="product_content">
+                                        <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                            <div>
+                                                <div>
+                                                    <div class="product_name"><a
+                                                            href="{% url 'products_detail' product_id=product.id %}">{{ product.title }}</a>
+                                                    </div>
+                                                    <div class="product_category"><a
+                                                            href="{% url 'products_selection' category_id=product.category.id %}">{{ product.category.title }}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="rating_r rating_r_5 home_item_rating">
+                                                    <i></i><i></i><i></i><i></i><i></i></div>
+                                                <div class="product_price text-right">₽{{ product.price }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="product_buttons">
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+
+                                                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                    <div>
+                                                        <div>
+                                                            <a href="{% url 'add_to_cart' product_id=product.id %}">
+                                                                <img alt="" class="svg"
+                                                                     src="{% static 'images/cart.svg' %}">
+                                                            </a>
+                                                            <div>+</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+        </div>
+<footer class="footer">
+    <div class="footer_content">
+        <div class="container">
+            <div class="row">
+
+                <!-- About -->
+                <div class="col-lg-4 footer_col">
+                    <div class="footer_about">
+                        <div class="footer_logo">
+                            <a href="https://selet.biz/tat/" target="_blank"
+                               rel="nofollow noopener noreferrer">
+                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="footer_logo_icon"><img alt="" src="{% static 'images/logo.png' %}"
+                                                                       width="50"></div>
+                                    <div>Кием</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="footer_about_text">
+                            <p>Описание проекта</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Footer Contact -->
+                <div class="col-lg-4 footer_col">
+
+                    <div class="footer_social">
+                        <div class="footer_title">KaiTeam</div>
+                        <div class="footer__images">
+                            <a href="https://kai.ru/main" target="_blank" rel="nofollow noopener noreferrer"
+                               class="footer__images-image footer__images-image-1"><img
+                                    src="{% static 'images/kai.png' %}" alt="KAI"></a>
+                            <a href="http://www.antat.ru/ru/" target="_blank"
+                               rel="nofollow noopener noreferrer"
+                               class="footer__images-image footer__images-image-2"><img
+                                    src="{% static 'images/anrt.png' %}" alt="ANRT"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div
+                            class="footer_bar_content d-flex flex-md-row flex-column align-items-center justify-content-start">
+                        <div class="copyright order-md-1 order-2">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            KaiTeam &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            КНИТУ-КАИ | АН-РТ | СЭЛЭТ
+                        </div>
+                        <nav class="footer_nav ml-md-auto order-md-2 order-1">
+                            <ul class="d-flex flex-row align-items-center justify-content-start">
+                                <li><a href="#">О нас</a></li>
+                                <li><a href="#">ТатЛерн</a></li>
+                                <li><a href="#">saf.tatar</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css' %}">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+        <!-- Home -->
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Корзина</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li><a href="{% url 'main_catalog' %}">Главная</a></li>
+                            <li>Ваша корзина</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cart -->
+        <div class="cart_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="cart_container">
+                            <!-- Cart Bar -->
+                            <div class="cart_bar">
+                                <ul class="cart_bar_list item_list d-flex flex-row align-items-center justify-content-end">
+                                    <li class="mr-auto">Товар</li>
+                                    <li>Цена</li>
+                                </ul>
+                            </div>
+
+                            <!-- Cart Items -->
+                            <div class="cart_items">
+                                <ul class="cart_items_list">
+
+                                    <!-- Cart Item -->
+                                    {% for c_p in cart.products.all %}
+                                    <li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-end justify-content-start">
+                                        <div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start mr-auto">
+
+                                            <div>
+                                                <div class="product_image"><img src="{{ c_p.product.get_photo_url }}">
+                                                </div>
+                                            </div>
+                                            <div class="product_name_container">
+                                                <div class="product_name"><a href="{% url 'products_detail' product_id=c_p.product.id %}">{{ c_p.product.title }}</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="product_price product_text">₽{{ c_p.product.price }}</div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        <div class="cart_items">
+                                    <ul class="cart_items_list">
+
+                                        <!-- Cart Item -->
+                                        <li
+                                            class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-end justify-content-start">
+                                            <div
+                                                class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start mr-auto">
+                                                <div>
+                                                    <div class="product_number">ИТОГО:</div>
+                                                </div>
+                                            </div>
+                                            <div class="product_total product_text">₽{{ cart.final_price }}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            {% if cart.final_price != 0 %}
+                            <!-- Cart Buttons -->
+                            <div class="cart_buttons d-flex flex-row align-items-start justify-content-start">
+                                <div class="cart_buttons_inner ml-sm-auto d-flex flex-row align-items-start justify-content-start flex-wrap">
+                                    <div class="button button_continue trans_200"><a href="{% url 'order_view' %}">Далее</a></div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
