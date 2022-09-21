@@ -89,7 +89,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-3 offset-lg-1">
                                                             <div class="home_item_side"><a
-                                                                    href="{% url 'products_detail' product_id=product__1_1 %}"><img
+                                                                    href="{% url 'products_detail' product_id=product__1_1.id %}"><img
                                                                     alt="{{ product__1_1.title }}"
                                                                     src="{{ product__1_1.get_photo_url }}"></a>
                                                             </div>
@@ -149,7 +149,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="home_item_side"><a
-                                                                    href="{% url 'products_detail' product_id=product__1_3 %}"><img
+                                                                    href="{% url 'products_detail' product_id=product__1_3.id %}"><img
                                                                     alt="{{ product__1_3.title }}"
                                                                     src="{{ product__1_3.get_photo_url }}"></a>
                                                             </div>

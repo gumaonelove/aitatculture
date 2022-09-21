@@ -9,11 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)vb#b5nnn4&2v6sos7)kri5=_l3-t!wt45@oa-^cvu)b&9pfw0'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'https://kiem.saf.tatar'
+    'kiem.saf.tatar'
 ]
 
 
