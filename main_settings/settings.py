@@ -13,7 +13,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'kiem.saf.tatar'
+    'https://kiem.saf.tatar'
 ]
 
 
